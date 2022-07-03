@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Sesssion Storage</title>
+</head>
+<body>
+   <p>Ini akan bertambah <span id="span"></span> kali</p>
+   <button id= "button">Klik disini</button>
+   <button id="clearButton">Hapus Disini</button>
+
+   <script>
+      const CacheKey = "NUMBER";
+      if (typeof(Storage) !== "undefined"){
+
+      if (localStorage.getItem(CacheKey) === "undefined") {
+         localStorage.setItem(CacheKey, 0);
+      }
+
+      const button = document.querySelector("#button");
+      const clearButton = document.querySelector("#clearButton")
+      const span = document.querySelector("#span");
+
+      button.addEventListener("click", function(event){
+         let number = localStorage.getItem(CacheKey);
+         number++;
+         localStorage.setItem(CacheKey, number);
+         span.innerText = localStorage.getItem(CacheKey);
+      });
+
+      clearButton.addEventListener("click", function(event){
+         localStorage.removeItem(CacheKey);
+      })
+
+      }else {
+         alert ("Browser tidak mendukung Web Storage")
+      }
+   </script>
+</body>
+</html>
